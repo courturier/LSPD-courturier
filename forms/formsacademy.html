@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academy Application</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="container" style="padding: 32px 0;">
+    <h1>Academy Application</h1>
+
+    <form id="academyForm" class="card" style="padding: 20px;">
+      <label>Имя<br><input name="name" required></label><br><br>
+      <label>Возраст<br><input name="age" required></label><br><br>
+      <label>Номер телефона<br><input name="phone" required></label><br><br>
+      <label>Почему хотите вступить?<br>
+        <textarea name="motivation" rows="6" required></textarea>
+      </label><br><br>
+
+      <button class="btn" type="submit">Сгенерировать</button>
+    </form>
+
+    <pre id="result" class="card" style="padding: 20px; margin-top: 20px; white-space: pre-wrap;"></pre>
+  </main>
+
+  <script>
+    document.getElementById('academyForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const data = new FormData(e.target);
+
+      const text = `
+[Academy Application]
+
+Имя: ${data.get('name')}
+Возраст: ${data.get('age')}
+Телефон: ${data.get('phone')}
+
+Мотивация:
+${data.get('motivation')}
+      `.trim();
+
+      document.getElementById('result').textContent = text;
+    });
+  </script>
+</body>
+</html>
